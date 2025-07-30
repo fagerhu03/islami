@@ -43,12 +43,15 @@ class QuranTab extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
-          Text(
-            "Most Recently",
-            style: TextStyle(
-              fontFamily: "janna",
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Most Recently",
+              style: TextStyle(
+                fontFamily: "janna",
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],
