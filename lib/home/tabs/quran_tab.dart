@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:islami/home/widgets/sura_name_item.dart';
 import 'package:islami/thems/app_color.dart';
+
+import '../../data/sura_list.dart';
 
 class QuranTab extends StatelessWidget {
   const QuranTab({super.key});
@@ -54,6 +57,29 @@ class QuranTab extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(height: 180),
+          SizedBox(height: 20),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Suras List",
+              style: TextStyle(
+                fontFamily: "janna",
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(itemBuilder: (context, index) {
+              return SuraNameItem
+                (index: index,
+                  nameAr: arabicAuranSuras[index],
+                  nameEn: englishQuranSurahs[index],
+                  numofVerses: AyaVerses[index]
+              );
+            },),
+          )
         ],
       ),
     );
