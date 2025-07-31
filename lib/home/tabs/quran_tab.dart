@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:islami/home/widgets/sura_name_item.dart';
 import 'package:islami/thems/app_color.dart';
-
 import '../../data/sura_list.dart';
+import '../widgets/horizontal_sura_item.dart';
 
 class QuranTab extends StatelessWidget {
   const QuranTab({super.key});
@@ -57,8 +57,27 @@ class QuranTab extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 180),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
+
+          Container(
+            height: 180,
+            child: ListView.separated(
+              separatorBuilder: (context, index) => SizedBox(
+                width: 16,
+              ),
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return HorizontalSuraItem(
+                  index: index + 1,
+                  nameAr: arabicAuranSuras[index],
+                  nameEn: englishQuranSurahs[index],
+                  numOfVerses: AyaVerses[index],
+                );
+              },
+              itemCount: 5,
+            ),
+          ),
+          SizedBox(height: 8),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
@@ -73,7 +92,7 @@ class QuranTab extends StatelessWidget {
           Expanded(
             child: ListView.builder(itemBuilder: (context, index) {
               return SuraNameItem
-                (index: index,
+                (index: index+1,
                   nameAr: arabicAuranSuras[index],
                   nameEn: englishQuranSurahs[index],
                   numofVerses: AyaVerses[index]

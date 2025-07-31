@@ -108,7 +108,9 @@ class OnboardingScreen extends StatelessWidget {
           color: AppColors.textPrimary,
         ),
       ),
-      onSkip: () {},
+      onSkip: () {
+        Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+      },
       // You can override onSkip callback
       showSkipButton: true,
       skipOrBackFlex: 0,
