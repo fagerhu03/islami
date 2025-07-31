@@ -22,7 +22,7 @@ class SuraNameItem extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             Image.asset("assets/icons/suraNum.png", height: 52, width: 52),
-            Text("$index", style: TextStyle(fontSize: 18, color: Colors.white)),
+            Text("$index", style: TextStyle(fontSize: 20, color: Colors.white,fontFamily: "janna")),
           ],
         ),
         SizedBox(width: 24),
@@ -32,17 +32,17 @@ class SuraNameItem extends StatelessWidget {
             children: [
               Text(
                 "$nameEn",
-                style: TextStyle(fontSize: 18, color: Colors.white),
+                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.white, fontFamily: "janna"),
               ),
               SizedBox(height: 4),
               Text(
                 "$numofVerses Verses",
-                style: TextStyle(fontSize: 18, color: Colors.white),
+                style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold, color: Colors.white,fontFamily: "janna"),
               ),
             ],
           ),
         ),
-        Text("$nameAr", style: TextStyle(fontSize: 18, color: Colors.white)),
+        Text("$nameAr", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.white,fontFamily: "janna")),
       ],
     );
   }
