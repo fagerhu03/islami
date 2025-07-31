@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../data/sura_list.dart';
+import '../../../data/sura_list.dart';
 
 class SuraNameItem extends StatelessWidget {
   String nameAr, nameEn;
