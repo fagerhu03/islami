@@ -5,11 +5,8 @@ class SebhaTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("sebha tab"),
-      ],
+    return Scaffold(
+
 
     );
   }

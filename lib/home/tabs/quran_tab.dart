@@ -44,7 +44,6 @@ class _QuranTabState extends State<QuranTab> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(height: 30),
-          Image.asset("assets/images/welcom_images/onboarding_header.png"),
 
           FocusScope(
             child: Focus(
@@ -160,7 +159,13 @@ class _QuranTabState extends State<QuranTab> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
+                separatorBuilder: (context, index) => Divider(
+                  thickness: 2,
+                  endIndent: 40,
+                  indent: 40,
+                  color: Color(0xFFE2BE7F),
+                ),
                 itemCount: surahs.length,
                 itemBuilder: (context, index) {
                   final surah = surahs[index];
@@ -183,7 +188,9 @@ class _QuranTabState extends State<QuranTab> {
                       nameEn: surah['name'],
                       numofVerses: surah['verses'],
                     ),
+
                   );
+
                 },
               ),
             ),

@@ -64,7 +64,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        body: tabs[currentIndex],
+        body: Column(
+          children: [
+            Image.asset("assets/images/welcom_images/onboarding_header.png",alignment: Alignment.topCenter,),
+            Expanded(child: tabs[currentIndex]),
+          ],
+        ),
       ),
     );
   }
@@ -72,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Widget> tabs = [
     QuranTab(),
-    HadethTab(),
+    AhadethTab(),
     SebhaTab(),
     RadioTab(),
     DateTab(),

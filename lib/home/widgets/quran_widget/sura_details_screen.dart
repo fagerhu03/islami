@@ -47,14 +47,19 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
             Expanded(
               child: Center(
                 child: Padding(
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 36, vertical: 18),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 36,
+                    vertical: 18,
+                  ),
                   child: Column(
                     children: [
                       Text(
                         model.nameAr,
                         style: TextStyle(
-                            fontSize: 30, color: Color(0xFFE2BE7F)),
+                          fontFamily: "janna",
+                          fontSize: 30,
+                          color: Color(0xFFE2BE7F),
+                        ),
                       ),
                       Expanded(
                         child: ListView.separated(
@@ -67,28 +72,37 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
                           itemBuilder: (context, index) => Directionality(
                             textDirection: TextDirection.rtl,
                             child: Text.rich(
-                                textAlign: TextAlign.center,
-                                TextSpan(children: [
+                              textAlign: TextAlign.center,
+                              TextSpan(
+                                children: [
                                   TextSpan(
                                     text: verses[index],
-                                    style:TextStyle(
-                                        fontSize: 16, color: Colors.white),
+                                    style: TextStyle(
+                                      fontFamily: "janna",
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                   TextSpan(
                                     text: "(${index + 1})",
-                                    style:TextStyle(
-                                        fontSize: 16, color: Colors.white),
-                                  )
-                                ])),
+                                    style: TextStyle(
+                                      fontFamily: "janna",
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                           itemCount: verses.length,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -96,8 +110,9 @@ class _SuraDetailsScreenState extends State<SuraDetailsScreen> {
   }
 
   loadSuraFile(int index) async {
-    String suraFile =
-    await rootBundle.loadString("assets/file/${index + 1}.txt");
+    String suraFile = await rootBundle.loadString(
+      "assets/file/${index + 1}.txt",
+    );
     List<String> suraLines = suraFile.split("\n");
     print(suraLines);
     verses = suraLines;

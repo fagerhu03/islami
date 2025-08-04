@@ -4,6 +4,9 @@ import 'package:islami/home/widgets/quran_widget/sura_details_screen.dart';
 import 'package:islami/onboarding_screen.dart';
 import 'package:islami/thems/app_color.dart';
 
+import 'home/tabs/hadeth_tab.dart';
+import 'home/widgets/hadeth_widget/hadeeth_details_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -20,6 +23,9 @@ class MyApp extends StatelessWidget {
         OnboardingScreen.routeName: (context) => OnboardingScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
         SuraDetailsScreen.routeName: (context) => SuraDetailsScreen(),
+        AhadethTab.routeName: (context) => AhadethTab(),
+        HadethDetailsScreen.routeName: (context) => HadethDetailsScreen(),
+
       },
 
       theme: ThemeData(
