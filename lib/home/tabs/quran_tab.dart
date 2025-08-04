@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:islami/home/widgets/quran_widget/sura_details_screen.dart';
 import 'package:islami/home/widgets/quran_widget/sura_name_item.dart';
 import 'package:islami/thems/app_color.dart';
+import '../../data/suar_item_model.dart';
 import '../../data/sura_list.dart';
 import '../widgets/quran_widget/horizontal_sura_item.dart';
-import '../widgets/quran_widget/search_quran.dart';
 
 class QuranTab extends StatefulWidget {
   const QuranTab({super.key});
@@ -17,12 +18,15 @@ class _QuranTabState extends State<QuranTab> {
   String query = "";
   bool isFocused = false;
 
-  late final List<Map<String, dynamic>> surahs = List.generate(114, (index) => {
-    "number": index + 1,
-    "name": englishQuranSurahs[index],
-    "arabic": arabicAuranSuras[index],
-    "verses": AyaVerses[index],
-  });
+  late final List<Map<String, dynamic>> surahs = List.generate(
+    114,
+        (index) => {
+      "number": index + 1,
+      "name": englishQuranSurahs[index],
+      "arabic": arabicAuranSuras[index],
+      "verses": AyaVerses[index],
+    },
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -91,11 +95,25 @@ class _QuranTabState extends State<QuranTab> {
                 itemCount: filteredSurahs.length,
                 itemBuilder: (context, index) {
                   final surah = filteredSurahs[index];
-                  return SuraNameItem(
-                    index: surah['number'],
-                    nameAr: surah['arabic'],
-                    nameEn: surah['name'],
-                    numofVerses: surah['verses'],
+                  return InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        SuraDetailsScreen.routeName,
+                        arguments: SuraItemModel(
+                          index: surah['number'] - 1,
+                          nameEn: surah['name'],
+                          nameAr: surah['arabic'],
+                          numOfVerses: surah['verses'],
+                        ),
+                      );
+                    },
+                    child: SuraNameItem(
+                      index: surah['number'],
+                      nameAr: surah['arabic'],
+                      nameEn: surah['name'],
+                      numofVerses: surah['verses'],
+                    ),
                   );
                 },
               ),
@@ -118,6 +136,7 @@ class _QuranTabState extends State<QuranTab> {
               child: ListView.separated(
                 separatorBuilder: (context, index) => const SizedBox(width: 16),
                 scrollDirection: Axis.horizontal,
+                itemCount: 5,
                 itemBuilder: (context, index) {
                   return HorizontalSuraItem(
                     index: index + 1,
@@ -126,7 +145,6 @@ class _QuranTabState extends State<QuranTab> {
                     numOfVerses: AyaVerses[index],
                   );
                 },
-                itemCount: 5,
               ),
             ),
             const SizedBox(height: 8),
@@ -145,11 +163,26 @@ class _QuranTabState extends State<QuranTab> {
               child: ListView.builder(
                 itemCount: surahs.length,
                 itemBuilder: (context, index) {
-                  return SuraNameItem(
-                    index: surahs[index]['number'],
-                    nameAr: surahs[index]['arabic'],
-                    nameEn: surahs[index]['name'],
-                    numofVerses: surahs[index]['verses'],
+                  final surah = surahs[index];
+                  return InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        SuraDetailsScreen.routeName,
+                        arguments: SuraItemModel(
+                          index: index,
+                          nameEn: surah['name'],
+                          nameAr: surah['arabic'],
+                          numOfVerses: surah['verses'],
+                        ),
+                      );
+                    },
+                    child: SuraNameItem(
+                      index: surah['number'],
+                      nameAr: surah['arabic'],
+                      nameEn: surah['name'],
+                      numofVerses: surah['verses'],
+                    ),
                   );
                 },
               ),
