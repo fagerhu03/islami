@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
     AhadethTab(),
     SebhaTab(),
     RadioTab(),
-    DateTab(),
+    TimeTab()
   ];
 
   String getBackgroundImageScreen() {
