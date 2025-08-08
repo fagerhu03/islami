@@ -5,6 +5,7 @@ import 'package:islami/onboarding_screen.dart';
 import 'package:islami/thems/app_color.dart';
 
 import 'home/tabs/hadeth_tab.dart';
+import 'home/tabs/sebha_tab.dart';
 import 'home/widgets/hadeth_widget/hadeeth_details_screen.dart';
 
 void main() {
