@@ -9,7 +9,7 @@ Islami is a Flutter-based mobile application that provides Muslims with essentia
 ---
 ## 📽 Demo
 
-[![Watch the demo](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)](https://youtu.be/YOUR_VIDEO_ID)
+[[Watch the demo]](https://github.com/fagerhu03/islami/blob/master/assets/screenshots/islami_demo.mkv)
 
 ---
 
