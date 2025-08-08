@@ -142,6 +142,8 @@ class _QuranTabState extends State<QuranTab> {
                     nameAr: arabicAuranSuras[index],
                     nameEn: englishQuranSurahs[index],
                     numOfVerses: AyaVerses[index],
+
+
                   );
                 },
               ),

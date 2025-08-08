@@ -14,7 +14,7 @@ class _SebhaListTabState extends State<SebhaTab>
     with SingleTickerProviderStateMixin {
   List<ZikrModel> azkar = [];
   int currentIndex = 0;
-  double rotationAngle = 0;
+  double rotationTurns = 0;
 
   @override
   void initState() {
@@ -48,7 +48,7 @@ class _SebhaListTabState extends State<SebhaTab>
       final currentZikr = azkar[currentIndex];
       if (currentZikr.currentCount < currentZikr.maxCount) {
         currentZikr.currentCount++;
-        rotationAngle += (2 * pi) / 33; // evenly rotate assuming 33 beads
+        rotationTurns += 1 / 33; // one bead step (360/33 degrees)
       }
 
       if (currentZikr.currentCount >= currentZikr.maxCount &&
@@ -61,73 +61,85 @@ class _SebhaListTabState extends State<SebhaTab>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: azkar.isEmpty
           ? const Center(
-        child: Text(
-          "No azkar loaded",
-          style: TextStyle(color: Colors.white),
-        ),
+        child: Text("No azkar loaded", style: TextStyle(color: Colors.white)),
       )
-          : Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 60),
-          const Text(
-            'سَبِّحِ ٱسْمَ رَبِّكَ ٱلْأَعْلَى',
-            style: TextStyle(
-              fontFamily: 'janna',
-              color: Colors.white,
-              fontSize: 18,
-            ),
-          ),
-          const SizedBox(height: 20),
-          GestureDetector(
-            onTap: incrementCounter,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                AnimatedRotation(
-                  turns: rotationAngle / (2 * pi),
-                  duration: const Duration(milliseconds: 300),
+          : SafeArea(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // Sebha Image Rotating
+            GestureDetector(
+              onTap: incrementCounter,
+              child: AnimatedRotation(
+                turns: rotationTurns,curve: Curves.linear,
+                duration: const Duration(milliseconds: 300),
+                child: Center(
                   child: Image.asset(
                     'assets/images/sebha/Sebha.png',
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: MediaQuery.of(context).size.width * 0.9,
+                    fit: BoxFit.contain,
                   ),
                 ),
-                Column(
-                  children: [
-                    Text(
-                      azkar[currentIndex].arabic,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontFamily: "janna",
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 6),
-                    Text(
-                      azkar[currentIndex].english,
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 16,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      '${azkar[currentIndex].currentCount}/${azkar[currentIndex].maxCount}',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                )
+              ),
+            ),
+
+            // Text in the center of the Sebha
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  azkar[currentIndex].arabic,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                    fontFamily: "janna",
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  azkar[currentIndex].english,
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    fontSize: 20,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  '${azkar[currentIndex].currentCount}/${azkar[currentIndex].maxCount}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
-          ),
-        ],
+
+            // Top Text
+            Positioned(
+              top: 20,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Text(
+                  'سَبِّحِ ٱسْمَ رَبِّكَ ٱلْأَعْلَى',
+                  style: const TextStyle(
+                    fontFamily: 'janna',
+                    color: Colors.white,
+                    fontSize: 36,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
